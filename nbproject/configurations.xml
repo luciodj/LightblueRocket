@@ -66,8 +66,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <logicalFolder name="common" displayName="common" projectFiles="true">
-      </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
@@ -77,7 +75,6 @@
           <itemPath>mcc_generated_files/drivers/uart.c</itemPath>
         </logicalFolder>
         <logicalFolder name="examples" displayName="examples" projectFiles="true">
-          <itemPath>mcc_generated_files/examples/twi0_master_example.c</itemPath>
         </logicalFolder>
         <logicalFolder name="src" displayName="src" projectFiles="true">
           <itemPath>mcc_generated_files/src/pin_manager.c</itemPath>
@@ -89,7 +86,6 @@
           <itemPath>mcc_generated_files/src/usart1.c</itemPath>
           <itemPath>mcc_generated_files/src/twi0_master.c</itemPath>
         </logicalFolder>
-        <itemPath>mcc_generated_files/mcc.c</itemPath>
         <itemPath>mcc_generated_files/device_config.c</itemPath>
       </logicalFolder>
       <logicalFolder name="peripherals" displayName="peripherals" projectFiles="true">
