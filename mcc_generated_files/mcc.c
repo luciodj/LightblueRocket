@@ -31,10 +31,11 @@ void SYSTEM_Initialize(void)
     PIN_MANAGER_Initialize();
     BOD_Initialize();
     WDT_Initialize();
-    SLPCTRL_Initialize();
     CLKCTRL_Initialize();
-    I2C0_Initialize();
+    SLPCTRL_Initialize();
     SPI0_Initialize();
+    I2C0_Initialize();
+    TCA0_Initialize();
     USART2_Initialize();
     CPUINT_Initialize();
     USART1_Initialize();

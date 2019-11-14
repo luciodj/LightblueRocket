@@ -82,8 +82,8 @@ int main(void)
     while (1)  {
         if (connected) {
             // on a 1 sec schedule
-            if (TMR0IF) {
-                TMR0IF = 0; // clear flag
+            if (TCA0.SINGLE.INTFLAGS & 1) {
+                TCA0.SINGLE.INTFLAGS = 1; // clear flag
                 led1_update();  // deferred LED control
 
                 // send sensor data via transparent uart
