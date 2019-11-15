@@ -192,7 +192,7 @@ void USART2_Write(const uint8_t data)
 void USART2_Initialize()
 {
     //set baud rate register
-    USART2.BAUD = (uint16_t)USART2_BAUD_RATE(9600);
+    USART2.BAUD = (uint16_t)USART2_BAUD_RATE(115200);
 	
     //RXCIE enabled; TXCIE enabled; DREIE disabled; RXSIE enabled; LBME disabled; ABEIE disabled; RS485 OFF; 
     USART2.CTRLA = 0xD0;

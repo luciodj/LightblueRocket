@@ -21,6 +21,6 @@ void blue_button(void);
 void blue_version(uint8_t);
 void blue_parse(char);
 void blue_serial(char*);
-void led1_update(void);
+
 
 #endif // LIGHTBLUE_H

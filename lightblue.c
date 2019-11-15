@@ -3,11 +3,6 @@
  */
 
 #include "lightblue.h"
-//#include "common/i2c_wrapper.h"
-//#include "peripherals/ATECC608A.h"
-//#include "peripherals/BMA253.h"
-//#include "peripherals/MCP9844.h"
-//#include "peripherals/SST25PF040CT.h"
 #include "rn487x.h"
 #include "sensor_handling.h"
 
@@ -136,48 +131,30 @@ void blue_button(void)
 {
     char payload[16];
     *payload = '\0';
-    blue_byte(payload, 0x00 + (1 - SW0_get())); // Button 0, state ( 1 = pushed )
+    blue_byte(payload, SW0_get() ? 0 : 1); // Button 0, state ( 1 = pushed )
     blue_print('P', payload);
 }
 
-// led1 RED, is managed as a global as we cannot poll its status
-uint8_t led1 = 0;       // off by default
-uint8_t led1_new = 0;   // off by default
-
-void led1_set(uint8_t v)
+void led1_set(uint8_t v)    // RED - ERR
 {
-    led1_new = v;
+    if (v)  PF5_ERR_LED_SetLow();   // ON
+    else    PF5_ERR_LED_SetHigh();  // OFF
 }
 
-/*
- * LED1 (RED) cannot be set while in transparent mode, it must be deferred to main loop
- * RED is controlled by the BLE module in CMD mode
- * switching mode while in the middle of a receive sequence would clear the BLE buffers
- */
-void led1_update(void)
+uint8_t led1_get(void)      // RED - ERR
 {
-    if (led1 != led1_new) {  // value change
-        led1 = led1_new;
-        RN487X_EnterCmdMode();
-        RN487X_SetIO(led1 == 0);
-        RN487X_EnterDataMode();
-    }
-}
-
-uint8_t led1_get(void)
-{
-    return led1;
+    return PF5_ERR_LED_GetValue() ? 0 : 1;
 }
 
 void led0_set(uint8_t v)    // GREEN - DATA
 {
-    if (v) PF4_DATA_LED_DGI_SetLow();   // ON
-    else   PF4_DATA_LED_DGI_SetHigh();  // OFF
+    if (v)  PF4_DATA_LED_DGI_SetLow();   // ON
+    else    PF4_DATA_LED_DGI_SetHigh();  // OFF
 }
 
 uint8_t led0_get(void)      // GREEN - DATA
 {
-    return 1 - PF4_DATA_LED_DGI_GetValue();
+    return PF4_DATA_LED_DGI_GetValue() ? 0 : 1;
 }
 
 void blue_leds(void)

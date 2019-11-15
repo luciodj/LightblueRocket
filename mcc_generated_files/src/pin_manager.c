@@ -42,9 +42,7 @@ static void (*PORTA_PA7_SPI_CS_InterruptHandler)(void);
 static void (*PORTF_PF1_InterruptHandler)(void);
 static void (*PORTF_PF0_InterruptHandler)(void);
 static void (*PORTF_PF3_SW0_DGI_FW_InterruptHandler)(void);
-static void (*PORTD_PD1_MBUS_PWM_InterruptHandler)(void);
 static void (*PORTF_PF2_EVENT_InterruptHandler)(void);
-static void (*PORTD_PD0_SPI_CS_InterruptHandler)(void);
 static void (*PORTF_PF5_ERR_LED_InterruptHandler)(void);
 static void (*PORTD_PD3_BLE_RST_InterruptHandler)(void);
 static void (*PORTF_PF4_DATA_LED_DGI_InterruptHandler)(void);
@@ -57,10 +55,10 @@ void PIN_MANAGER_Initialize()
     PORT_Initialize();
 
     /* DIR Registers Initialization */
-    PORTA.DIR = 0xD1;
+    PORTA.DIR = 0xD5;
     PORTB.DIR = 0x00;
     PORTC.DIR = 0x01;
-    PORTD.DIR = 0x3B;
+    PORTD.DIR = 0x38;
     PORTE.DIR = 0x00;
     PORTF.DIR = 0x31;
 
@@ -151,9 +149,7 @@ void PIN_MANAGER_Initialize()
     PORTF_PF1_SetInterruptHandler(PORTF_PF1_DefaultInterruptHandler);
     PORTF_PF0_SetInterruptHandler(PORTF_PF0_DefaultInterruptHandler);
     PORTF_PF3_SW0_DGI_FW_SetInterruptHandler(PORTF_PF3_SW0_DGI_FW_DefaultInterruptHandler);
-    PORTD_PD1_MBUS_PWM_SetInterruptHandler(PORTD_PD1_MBUS_PWM_DefaultInterruptHandler);
     PORTF_PF2_EVENT_SetInterruptHandler(PORTF_PF2_EVENT_DefaultInterruptHandler);
-    PORTD_PD0_SPI_CS_SetInterruptHandler(PORTD_PD0_SPI_CS_DefaultInterruptHandler);
     PORTF_PF5_ERR_LED_SetInterruptHandler(PORTF_PF5_ERR_LED_DefaultInterruptHandler);
     PORTD_PD3_BLE_RST_SetInterruptHandler(PORTD_PD3_BLE_RST_DefaultInterruptHandler);
     PORTF_PF4_DATA_LED_DGI_SetInterruptHandler(PORTF_PF4_DATA_LED_DGI_DefaultInterruptHandler);
@@ -454,19 +450,6 @@ void PORTF_PF3_SW0_DGI_FW_DefaultInterruptHandler(void)
     // or set custom function using PORTF_PF3_SW0_DGI_FW_SetInterruptHandler()
 }
 /**
-  Allows selecting an interrupt handler for PORTD_PD1_MBUS_PWM at application runtime
-*/
-void PORTD_PD1_MBUS_PWM_SetInterruptHandler(void (* interruptHandler)(void)) 
-{
-    PORTD_PD1_MBUS_PWM_InterruptHandler = interruptHandler;
-}
-
-void PORTD_PD1_MBUS_PWM_DefaultInterruptHandler(void)
-{
-    // add your PORTD_PD1_MBUS_PWM interrupt custom code
-    // or set custom function using PORTD_PD1_MBUS_PWM_SetInterruptHandler()
-}
-/**
   Allows selecting an interrupt handler for PORTF_PF2_EVENT at application runtime
 */
 void PORTF_PF2_EVENT_SetInterruptHandler(void (* interruptHandler)(void)) 
@@ -478,19 +461,6 @@ void PORTF_PF2_EVENT_DefaultInterruptHandler(void)
 {
     // add your PORTF_PF2_EVENT interrupt custom code
     // or set custom function using PORTF_PF2_EVENT_SetInterruptHandler()
-}
-/**
-  Allows selecting an interrupt handler for PORTD_PD0_SPI_CS at application runtime
-*/
-void PORTD_PD0_SPI_CS_SetInterruptHandler(void (* interruptHandler)(void)) 
-{
-    PORTD_PD0_SPI_CS_InterruptHandler = interruptHandler;
-}
-
-void PORTD_PD0_SPI_CS_DefaultInterruptHandler(void)
-{
-    // add your PORTD_PD0_SPI_CS interrupt custom code
-    // or set custom function using PORTD_PD0_SPI_CS_SetInterruptHandler()
 }
 /**
   Allows selecting an interrupt handler for PORTF_PF5_ERR_LED at application runtime
