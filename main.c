@@ -44,7 +44,6 @@
 #include "util.h"
 #include "lightblue.h"
 #include "rn487x.h"
-#include "mcc_generated_files/utils/interrupt_avr8.h"
 
 #define VERSION     0x06
 
@@ -72,10 +71,11 @@ int main(void)
     SYSTEM_Initialize();
     RN487x_AsyncHandlerSet(message_handler, buffer, sizeof(buffer));
     Enable_global_interrupt();
+
     RN487X_Init();
 
     // Assign CDC UART
-    print_stdout(USART2_Write);
+    print_stdout(uart[CDC_UART].Write);
 
     print_printf("LightBlue demo\n");
 
