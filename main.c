@@ -45,7 +45,7 @@
 #include "lightblue.h"
 #include "rn487x.h"
 
-#define VERSION     0x06
+#define VERSION     0x01
 
 static uint8_t  buffer[80];         // buffer for async messages
 static char     serial[80];         // buffer for LightBlue

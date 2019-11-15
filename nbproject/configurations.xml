@@ -90,10 +90,8 @@
         <itemPath>mcc_generated_files/mcc.c</itemPath>
       </logicalFolder>
       <logicalFolder name="peripherals" displayName="peripherals" projectFiles="true">
-        <itemPath>peripherals/ATECC608A.c</itemPath>
         <itemPath>peripherals/BMA253.c</itemPath>
         <itemPath>peripherals/MCP9844.c</itemPath>
-        <itemPath>peripherals/SST25PF040CT.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>rn487x.c</itemPath>
@@ -671,6 +669,10 @@
         <property key="stack-type" value="compiled"/>
         <property key="user-pack-device-support" value=""/>
       </XC8-config-global>
+      <item path="mcc_generated_files/examples/twi0_master_example.c"
+            ex="true"
+            overriding="false">
+      </item>
       <nEdbgTool>
         <property key="AutoSelectMemRanges" value="auto"/>
         <property key="communication.activationmode" value="nohv"/>
