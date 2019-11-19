@@ -1,5 +1,5 @@
 /**
-  Generated Main Source File
+  AVR-BLE LightBlue demo
 
   Company:
     Microchip Technology Inc.
@@ -8,14 +8,12 @@
     main.c
 
   Summary:
-    This is the main file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+    This is the default (Out of Box) demo firwmare for AVR-BLE board.
 
   Description:
-    This header file provides implementations for driver APIs for all modules selected in the GUI.
-    Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
-        Device            :  PIC16LF18456
-        Driver Version    :  2.00
+    It implements a simple serial protocol using the Transparent UART of the
+    RN4870 module to report sensor data to the LightBlue mobile app.
+
 */
 
 /*
@@ -41,7 +39,7 @@
     SOFTWARE.
 */
 
-#include "util.h"
+//#include "util.h"
 #include "lightblue.h"
 #include "rn487x.h"
 
@@ -77,7 +75,7 @@ int main(void)
     // Assign CDC UART
     print_stdout(uart[CDC_UART].Write);
 
-    print_printf("LightBlue demo\n");
+    printf("LightBlue demo\n");
 
     while (1)  {
         if (connected) {
