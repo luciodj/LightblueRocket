@@ -47,15 +47,13 @@
         <itemPath>mcc_generated_files/mcc.h</itemPath>
       </logicalFolder>
       <logicalFolder name="peripherals" displayName="peripherals" projectFiles="true">
-        <itemPath>peripherals/ATECC608A.h</itemPath>
         <itemPath>peripherals/BMA253.h</itemPath>
         <itemPath>peripherals/MCP9844.h</itemPath>
-        <itemPath>peripherals/SST25PF040CT.h</itemPath>
       </logicalFolder>
       <itemPath>rn487x.h</itemPath>
       <itemPath>lightblue.h</itemPath>
-      <itemPath>util.h</itemPath>
       <itemPath>sensor_handling.h</itemPath>
+      <itemPath>bsp.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -96,8 +94,8 @@
       <itemPath>main.c</itemPath>
       <itemPath>rn487x.c</itemPath>
       <itemPath>lightblue.c</itemPath>
-      <itemPath>util.c</itemPath>
       <itemPath>sensor_handling.c</itemPath>
+      <itemPath>bsp.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

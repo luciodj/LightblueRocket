@@ -8,11 +8,11 @@
     main.c
 
   Summary:
-    This is the default (Out of Box) demo firwmare for AVR-BLE board.
+    This is the default (Out of Box) demo firmware for AVR-BLE board.
 
   Description:
     It implements a simple serial protocol using the Transparent UART of the
-    RN4870 module to report sensor data to the LightBlue mobile app.
+    RN4870 module to report sensor data to the LightBlue mobile App.
 
 */
 
@@ -39,11 +39,10 @@
     SOFTWARE.
 */
 
-//#include "util.h"
 #include "lightblue.h"
 #include "rn487x.h"
 
-#define VERSION     0x01
+#define VERSION     0x02
 
 static uint8_t  buffer[80];         // buffer for async messages
 static char     serial[80];         // buffer for LightBlue
@@ -71,11 +70,7 @@ int main(void)
     Enable_global_interrupt();
 
     RN487X_Init();
-
-    // Assign CDC UART
-    print_stdout(uart[CDC_UART].Write);
-
-    printf("LightBlue demo\n");
+    printf("AVR-BLE LightBlue demo\n");
 
     while (1)  {
         if (connected) {
@@ -83,7 +78,7 @@ int main(void)
             if (TCA0.SINGLE.INTFLAGS & 1) {
                 TCA0.SINGLE.INTFLAGS = 1; // clear flag
 
-                // send sensor data via transparent uart
+                // send sensor data via transparent UART
                 blue_version(VERSION);
                 blue_temp();
                 blue_acc();
@@ -107,12 +102,12 @@ int main(void)
             }
 
         else { // not connected
-            // report BLE output to terminal
+            // bridge BLE output to terminal
             while (RN487x_DataReady())
                 uart[CDC_UART].Write(RN487x_Read());
-            //  mirror cdc to ble
+            //  mirror CDC to BLE
             while (uart[CDC_UART].DataReady())
                 uart[BLE_UART].Write(uart[CDC_UART].Read());
         } // disconnected
-    } // main lopp
+    } // main loop
 }

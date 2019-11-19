@@ -11,7 +11,7 @@
 
 #include "mcc_generated_files/mcc.h"
 #include "mcc_generated_files/drivers/uart.h"
-#include "util.h"
+#include "bsp.h"
 
 bool get_command(char, char*);
 void blue_acc(void);
