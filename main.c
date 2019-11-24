@@ -44,7 +44,7 @@
 
 #define VERSION     0x02
 
-static uint8_t  buffer[80];         // buffer for async messages
+static char  buffer[80];         // buffer for async messages
 static char     serial[80];         // buffer for LightBlue
 static uint8_t  sp = 0;             // insertion pointer
 static bool     connected = false;  // LightBlue is connected

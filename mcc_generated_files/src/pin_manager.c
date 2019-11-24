@@ -57,7 +57,7 @@ void PIN_MANAGER_Initialize()
     PORT_Initialize();
 
     /* DIR Registers Initialization */
-    PORTA.DIR = 0xD1;
+    PORTA.DIR = 0xD7;
     PORTB.DIR = 0x00;
     PORTC.DIR = 0x01;
     PORTD.DIR = 0x3B;
@@ -65,12 +65,12 @@ void PIN_MANAGER_Initialize()
     PORTF.DIR = 0x31;
 
     /* OUT Registers Initialization */
-    PORTA.OUT = 0x80;
+    PORTA.OUT = 0x81;
     PORTB.OUT = 0x00;
-    PORTC.OUT = 0x00;
+    PORTC.OUT = 0x01;
     PORTD.OUT = 0x1B;
     PORTE.OUT = 0x00;
-    PORTF.OUT = 0x30;
+    PORTF.OUT = 0x21;
 
     /* PINxCTRL registers Initialization */
     PORTA.PIN0CTRL = 0x00;
