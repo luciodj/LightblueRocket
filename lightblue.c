@@ -6,53 +6,11 @@
 #include "rn487x.h"
 #include "sensor_handling.h"
 
-uint8_t cmd[80];
-
-uint8_t buffer[80];
-uint32_t temp_word = 0;
-uint8_t key_buffer[128];
 static uint8_t blue_sequence = 0;
-
 
 #define NUM_ELEM(x) (sizeof (x) / sizeof (*(x)))
 
 typedef enum { _idle=0, _seq, _cmd, _len0, _len1, _payload0, _payload1} blue_state;
-
-void bt_read_reg(char * cmd, uint8_t * response)
-{
-    // Get into command mode
-    _delay_ms(5);
-    uart[CDC_UART].Write('$');
-    uart[CDC_UART].Write('$');
-    uart[CDC_UART].Write('$');
-    _delay_ms(5);
-
-    // CR to clear input if already in CMD mode
-    uart[CDC_UART].Write('\r');
-    _delay_ms(5);
-
-    // Read out garbage data
-    while(uart[CDC_UART].DataReady()){
-        uart[CDC_UART].Read();
-    }
-
-    // Command to send
-    while(*cmd != 0){
-        uart[CDC_UART].Write(*cmd);
-        cmd++;
-    }
-
-    uint8_t i = 0;
-    uint8_t done = false;
-    while (!done){
-        response[i] = uart[CDC_UART].Read();
-        if ((response[i] == '\r') || (response[i] == '\n')) {
-            response[i] = 0;
-            done = true;
-        }
-        i++;
-    }
-}
 
 static char _hex[] = "0123456789ABCDEF";
 #define Hex(x) _hex[(x) & 0xf]
@@ -87,6 +45,7 @@ void blue_print(char id, char* payload)
 */
 void blue_temp(void){
     char payload[32];
+    uint8_t buffer[2];
 
     *payload = '\0';
     uint16_t word = temp_read(buffer);
@@ -103,7 +62,8 @@ void blue_temp(void){
 */
 void blue_acc(void){
     char payload[32];
-
+    uint8_t buffer[6];
+    
     *payload = '\0';
     uint8_t i;
     uint16_t xyz[3], temp_word;
